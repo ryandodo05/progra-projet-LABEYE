@@ -39,7 +39,7 @@
             // lPrincipal
             // 
             this.lPrincipal.AutoSize = true;
-            this.lPrincipal.Location = new System.Drawing.Point(65, 68);
+            this.lPrincipal.Location = new System.Drawing.Point(12, 20);
             this.lPrincipal.Name = "lPrincipal";
             this.lPrincipal.Size = new System.Drawing.Size(44, 16);
             this.lPrincipal.TabIndex = 0;
@@ -48,7 +48,7 @@
             // lSecondaire
             // 
             this.lSecondaire.AutoSize = true;
-            this.lSecondaire.Location = new System.Drawing.Point(64, 114);
+            this.lSecondaire.Location = new System.Drawing.Point(11, 66);
             this.lSecondaire.Name = "lSecondaire";
             this.lSecondaire.Size = new System.Drawing.Size(44, 16);
             this.lSecondaire.TabIndex = 1;
@@ -56,7 +56,8 @@
             // 
             // pbPrincipal
             // 
-            this.pbPrincipal.Location = new System.Drawing.Point(252, 65);
+            this.pbPrincipal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.pbPrincipal.Location = new System.Drawing.Point(199, 17);
             this.pbPrincipal.Name = "pbPrincipal";
             this.pbPrincipal.Size = new System.Drawing.Size(246, 29);
             this.pbPrincipal.Step = 1;
@@ -64,7 +65,8 @@
             // 
             // pbSecondaire
             // 
-            this.pbSecondaire.Location = new System.Drawing.Point(252, 114);
+            this.pbSecondaire.ForeColor = System.Drawing.Color.Red;
+            this.pbSecondaire.Location = new System.Drawing.Point(199, 66);
             this.pbSecondaire.Name = "pbSecondaire";
             this.pbSecondaire.Size = new System.Drawing.Size(246, 29);
             this.pbSecondaire.Step = 1;
@@ -72,7 +74,7 @@
             // 
             // bExecuter
             // 
-            this.bExecuter.Location = new System.Drawing.Point(542, 69);
+            this.bExecuter.Location = new System.Drawing.Point(489, 21);
             this.bExecuter.Name = "bExecuter";
             this.bExecuter.Size = new System.Drawing.Size(172, 24);
             this.bExecuter.TabIndex = 4;
@@ -82,7 +84,7 @@
             // 
             // bQuitter
             // 
-            this.bQuitter.Location = new System.Drawing.Point(542, 119);
+            this.bQuitter.Location = new System.Drawing.Point(489, 71);
             this.bQuitter.Name = "bQuitter";
             this.bQuitter.Size = new System.Drawing.Size(172, 24);
             this.bQuitter.TabIndex = 5;
@@ -90,18 +92,18 @@
             this.bQuitter.UseVisualStyleBackColor = true;
             this.bQuitter.Click += new System.EventHandler(this.bQuitter_Click);
             // 
-            // Form1
+            // progressBAR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(689, 109);
             this.Controls.Add(this.bQuitter);
             this.Controls.Add(this.bExecuter);
             this.Controls.Add(this.pbSecondaire);
             this.Controls.Add(this.pbPrincipal);
             this.Controls.Add(this.lSecondaire);
             this.Controls.Add(this.lPrincipal);
-            this.Name = "Form1";
+            this.Name = "progressBAR";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();

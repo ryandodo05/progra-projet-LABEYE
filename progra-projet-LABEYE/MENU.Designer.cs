@@ -41,6 +41,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btlab4 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -151,39 +154,42 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(15, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 242);
+            this.groupBox1.Size = new System.Drawing.Size(350, 325);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cours de Programmation";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btlab4);
             this.groupBox2.Controls.Add(this.bLab3);
             this.groupBox2.Controls.Add(this.bLab2);
             this.groupBox2.Controls.Add(this.bLab1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(381, 46);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(288, 242);
+            this.groupBox2.Size = new System.Drawing.Size(288, 325);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Redirection vers Programmes";
+            this.groupBox2.Text = "Programmes";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(693, 46);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(139, 242);
+            this.groupBox3.Size = new System.Drawing.Size(139, 325);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Status";
@@ -196,16 +202,50 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(33, 33);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(851, 307);
+            this.groupBox4.Size = new System.Drawing.Size(851, 394);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Programmation IS2 KRAUS";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(13, 275);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(331, 22);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Cours du 16 Février 2026 (laboratoire 4)";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // btlab4
+            // 
+            this.btlab4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btlab4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btlab4.Location = new System.Drawing.Point(6, 270);
+            this.btlab4.Name = "btlab4";
+            this.btlab4.Size = new System.Drawing.Size(276, 35);
+            this.btlab4.TabIndex = 3;
+            this.btlab4.Text = "laboratoire 4";
+            this.btlab4.UseVisualStyleBackColor = false;
+            this.btlab4.Click += new System.EventHandler(this.btlab4_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Rubik", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label8.Location = new System.Drawing.Point(21, 271);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(89, 28);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "FINI ✔";
             // 
             // MENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 374);
+            this.ClientSize = new System.Drawing.Size(1012, 479);
             this.Controls.Add(this.groupBox4);
             this.Name = "MENU";
             this.Text = "MENU";
@@ -234,5 +274,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btlab4;
+        private System.Windows.Forms.Label label8;
     }
 }

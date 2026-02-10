@@ -75,10 +75,22 @@ namespace Manipulation_liste
 
         private void bSupprimer_Click(object sender, EventArgs e)
         {
-            if (lbPersonne.SelectedIndex >= 0)  //pour selectionner dans la liste
-                lbPersonne.Items.RemoveAt(lbPersonne.SelectedIndex); //on le RM de la liste
-        }
+            int indexSuppr = lbPersonne.SelectedIndex; //recuperation index
+            if (indexSuppr < 0) // si aucun item n'est sélectionné, on ne fait rien
+                return;
 
+            int encodageSuppr = SendMessage(lbPersonne.Handle, smLire, indexSuppr, 0);// recup l'encodage de l'item à supprimer pour pouvoir mettre à jour les encodages restants après la suppression
+            lbPersonne.Items.RemoveAt(indexSuppr);// on supprime l'item de la liste
+            for (int i = 0; i < lbPersonne.Items.Count; i++)// mise a jour des encodages d'items
+            {
+                int enc = SendMessage(lbPersonne.Handle, smLire, i, 0);// recup l'encodage de l'item
+                if (enc > encodageSuppr)// si l'encodage de l'item est supérieur à celui de l'item supprimé, on le décrémente pour combler le trou laissé par la suppression
+                {
+                    enc--;
+                    SendMessage(lbPersonne.Handle, smEcrire, i, enc);
+                }
+            }
+        }
         private void bModifier_Click(object sender, EventArgs e)
         {
             if (lbPersonne.SelectedIndex < 0) //pour selectionner dans la liste
@@ -119,42 +131,65 @@ namespace Manipulation_liste
             Activer(true); //la gauche se réactive et la droite se désactive pour revenir à l'état initial de l'interface
         }
 
-        private void bOuvrir_Click(object sender, EventArgs e) 
+        private void bOuvrir_Click(object sender, EventArgs e)
         {
-            if (ofdOuvrir.ShowDialog() == DialogResult.OK)// on affiche la boite de dialogue d'ouverture de fichier et on vérifie si l'utilisateur a sélectionné un fichier
+            if (ofdOuvrir.ShowDialog() == DialogResult.OK) // si l'utilisateur sélectionne un fichier et clique sur OK
             {
-                NomFichier = ofdOuvrir.FileName; // on stocke le nom du fichier sélectionné dans la variable NomFichier
-                lbPersonne.Items.Clear(); // on vide la liste avant de charger les nouvelles données du fichier
+                NomFichier = ofdOuvrir.FileName; // on stocke le nom du fichier sélectionné
+                lbPersonne.Items.Clear();// on vide la liste avant de charger les nouvelles données
+                compteurEncodage = 0;// on réinitialise le compteur d'encodage pour éviter les conflits avec les encodages des items chargés
 
-                foreach (string ligne in File.ReadAllLines(NomFichier)) // on lit toutes les lignes du fichier et on les ajoute à la liste
-                    lbPersonne.Items.Add(ligne); // on ajoute chaque ligne du fichier à la liste
-                // a savoir que que je n'ai pas fait d'encodage pour ouverture de fichier car je sais pas comment faire.
+                string[] lignes = File.ReadAllLines(NomFichier, Encoding.UTF8); // Utilisation de l'encodage UTF-8
+
+                for (int i = 0; i < lignes.Length; i++)// on parcourt les lignes du fichier pour les ajouter à la liste
+                {
+                    string ligne = lignes[i];// on récupère la ligne courante
+                    int posDieze = ligne.LastIndexOf('#');// on cherche la position du dernier # pour séparer le texte de l'encodage
+                    if (posDieze < 0)//si pas de #, ps d'encodage, on ajoute la ligne telle quelle à la liste
+                    {
+                        lbPersonne.Items.Add(ligne);
+                        continue;
+                    }
+                    string texte = ligne.Substring(0, posDieze);// on récupère le texte en prenant ce qui a avant le #
+                    string encStr = ligne.Substring(posDieze + 1);// on récupère l'encodage en prenant ce qui a après le #
+                    int encodage;
+                    if (!int.TryParse(encStr, out encodage))// si l'encodage n'est pas un nombre valide, on le considère comme 0
+                        encodage = 0;
+                    int index = lbPersonne.Items.Add(texte);
+                    SendMessage(lbPersonne.Handle, smEcrire, index, encodage);//donnée caché
+                    if (encodage > compteurEncodage)
+                        compteurEncodage = encodage;
+                }
             }
         }
 
         private void bEnregistrer_Click(object sender, EventArgs e)
         {
-            if (sfdEnregistrer.ShowDialog() == DialogResult.OK)
+            if (sfdEnregistrer.ShowDialog() == DialogResult.OK)// si l'utilisateur sélectionne un emplacement et clique sur OK
             {
                 NomFichier = sfdEnregistrer.FileName;
 
-                File.WriteAllLines(NomFichier,
-                    lbPersonne.Items.Cast<string>().ToArray());
+                List<string> lignes = new List<string>(); for (int i = 0; i < lbPersonne.Items.Count; i++)// on parcourt les items de la liste pour les enregistrer dans le fichier
+                {
+                    string texte = lbPersonne.Items[i].ToString();// on récupère le texte de l'item
+                    int encodage = SendMessage(lbPersonne.Handle, smLire, i, 0);// on récupère l'encodage de l'item en envoyant un message à la liste avec l'index                    lignes.Add($"{texte}#{encodage}");
+                }
+                File.WriteAllLines(NomFichier, lignes);
             }
         }
 
-        private void lbPersonne_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbPersonne_SelectedIndexChanged(object sender, EventArgs e)// lorsque l'utilisateur sélectionne un item dans la liste, on affiche ses informations dans une boîte de dialogue
         {
-            if (lbPersonne.SelectedIndex < 0)
+            if (lbPersonne.SelectedIndex < 0)// si aucun item n'est sélectionné, on ne fait rien
                 return;
 
             string texte = lbPersonne.SelectedItem.ToString();
             int index = lbPersonne.SelectedIndex;
 
-            int encodage = SendMessage(lbPersonne.Handle, smLire, index, 0);
+            int encodage = SendMessage(lbPersonne.Handle, smLire, index, 0);// on récupère l'encodage de l'item sélectionné en envoyant un message à la liste avec l'index
 
             MessageBox.Show(
-                $"Texte : {texte}\nIndex : {index}\nEncodage : {encodage}",
+                $"Texte : {texte}\nIndex : {index}\nEncodage : {encodage}",// on affiche le texte, l'index et l'encodage de l'item sélectionné dans une boîte de dialoguew
                 "Informations");
         }
 
