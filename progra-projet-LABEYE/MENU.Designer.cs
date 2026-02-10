@@ -173,7 +173,7 @@
             this.groupBox2.Size = new System.Drawing.Size(288, 242);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Redirection vers Programmes";
+            this.groupBox2.Text = "Programmes";
             // 
             // groupBox3
             // 
@@ -205,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 374);
+            this.ClientSize = new System.Drawing.Size(1012, 374);
             this.Controls.Add(this.groupBox4);
             this.Name = "MENU";
             this.Text = "MENU";

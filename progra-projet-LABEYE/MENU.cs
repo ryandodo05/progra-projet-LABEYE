@@ -22,7 +22,7 @@ namespace progra_projet_LABEYE
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 f1 = new Form2(); f1.Show();
+            Labo1 f1 = new Labo1(); f1.Show();
         }
 
         private void bLab2_Click(object sender, EventArgs e)
