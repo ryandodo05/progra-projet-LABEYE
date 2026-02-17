@@ -1,4 +1,4 @@
-﻿namespace progra_projet_LABEYE
+namespace progra_projet_LABEYE
 {
     partial class MENU
     {
