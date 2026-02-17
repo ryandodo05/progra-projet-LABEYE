@@ -21,8 +21,7 @@ namespace progra_projet_LABEYE
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            Labo1 f1 = new Labo1(); f1.Show();
+        {FicInversion f1 = new FicInversion(); f1.Show();
         }
 
         private void bLab2_Click(object sender, EventArgs e)

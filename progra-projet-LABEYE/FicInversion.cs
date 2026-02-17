@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace progra_projet_LABEYE
 {
-    public partial class Form1 : Form
+    public partial class FicInversion : Form
     {
-        public Form1()
+        public FicInversion()
         {
             InitializeComponent();
 
@@ -44,7 +44,7 @@ namespace progra_projet_LABEYE
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Labo1-2 f2 = new Labo1- 2(); // ouvrir form 2
+            Form2 f2 = new Form2(); // ouvrir form 2
             f2.Show();
             this.Hide();
         }
